@@ -1,0 +1,8 @@
+[package]
+name = "advent03a"
+version = "0.1.0"
+authors = ["Xavier Sala <utrescu@gmail.com>"]
+
+[dependencies]
+regex = "1"
+lazy_static = "1.2.0"
