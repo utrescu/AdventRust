@@ -1,0 +1,7 @@
+[package]
+name = "advent04a"
+version = "0.1.0"
+authors = ["Xavier Sala <utrescu@gmail.com>"]
+
+[dependencies]
+regex = "1.1.0"
