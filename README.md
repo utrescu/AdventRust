@@ -10,3 +10,5 @@ DISCLAIMER:
 - Segur que no els podré fer tots el dia que toc
 
 O sigui que ho provaré quan pugui
+
+> NOTA: M'HA PETAT EL PORTÀTIL O SIGUI QUE AQUÍ S'ACABA EL QUE ES DONAVA ... FINS QUE ME'N COMPRI UN ALTRE O ACONSEGUEIXI ARREGLAR-LO
