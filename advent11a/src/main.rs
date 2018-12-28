@@ -18,17 +18,38 @@ fn main() {
 
     // Ara buscar el pack 3x3 que suma més
     // let mut ocupacio: HashMap<(usize, usize), usize> = HashMap::new();
-    let mut max = -1;
+
+    const SIZE: usize = 2;
+    let (soluciox, solucioy, _) = solucio1(SIZE, &graella);
+    println!("Solucio 1 -> {},{}", soluciox, solucioy);
+
+    let mut total = 0;
     let mut soluciox = 0;
     let mut solucioy = 0;
-    const SIZE: usize = 2;
+    let mut solucion = 0;
 
-    for fila in 0..graella.len() - SIZE {
-        for columna in 0..graella[fila].len() - SIZE {
+    for quadre in 2..=300 {
+        let (candidatx, candidaty, max_valor) = solucio1(quadre, &graella);
+        if max_valor > total {
+            soluciox = candidatx;
+            solucioy = candidaty;
+            solucion = quadre;
+            total = max_valor;
+        }
+    }
+    println!("Solucio2 -> {},{},{}", soluciox, solucioy, solucion + 1);
+}
+
+fn solucio1(mida: usize, graella: &Vec<Vec<i32>>) -> (usize, usize, i32) {
+    let mut max = 0;
+    let mut soluciox = 0;
+    let mut solucioy = 0;
+    for fila in 0..graella.len() - mida {
+        for columna in 0..graella[fila].len() - mida {
             let mut nou_valor = 0;
 
-            for dy in 0..=SIZE {
-                for dx in 0..=SIZE {
+            for dy in 0..=mida {
+                for dx in 0..=mida {
                     nou_valor = nou_valor + graella[fila + dy][columna + dx];
                 }
             }
@@ -41,6 +62,5 @@ fn main() {
             }
         }
     }
-
-    println!("{},{} = {}", soluciox, solucioy, max);
+    (soluciox, solucioy, max)
 }
