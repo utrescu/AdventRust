@@ -65,7 +65,7 @@ fn main() {
         let area = (maxx - minx) * (maxy - miny);
         // Quan el mapa es faci gran és que les lletres es separen
         if area > oldarea {
-            println!("Ha tardat {} segons {} -> {}", seconds, area, oldarea);
+            println!("Ha tardat {} segons {} -> {}", seconds - 1, area, oldarea);
             punts.iter_mut().for_each(|punt| punt.recula());
             break;
         }
