@@ -21,18 +21,17 @@ fn main() {
     let mut max = -1;
     let mut soluciox = 0;
     let mut solucioy = 0;
+    const SIZE: usize = 2;
 
-    for fila in 0..graella.len() - 2 {
-        for columna in 0..graella[fila].len() - 2 {
-            let nou_valor = graella[fila][columna]
-                + graella[fila + 1][columna]
-                + graella[fila + 2][columna]
-                + graella[fila][columna + 1]
-                + graella[fila + 1][columna + 1]
-                + graella[fila + 2][columna + 1]
-                + graella[fila][columna + 2]
-                + graella[fila + 1][columna + 2]
-                + graella[fila + 2][columna + 2];
+    for fila in 0..graella.len() - SIZE {
+        for columna in 0..graella[fila].len() - SIZE {
+            let mut nou_valor = 0;
+
+            for dy in 0..=SIZE {
+                for dx in 0..=SIZE {
+                    nou_valor = nou_valor + graella[fila + dy][columna + dx];
+                }
+            }
 
             // ocupacio.entry((columna, fila)).or_insert();
             if nou_valor > max {
