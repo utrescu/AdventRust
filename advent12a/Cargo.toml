@@ -1,0 +1,7 @@
+[package]
+name = "advent12a"
+version = "0.1.0"
+authors = ["xavier"]
+edition = "2018"
+
+[dependencies]
