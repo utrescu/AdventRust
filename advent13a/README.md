@@ -23,11 +23,11 @@ Intersections occur when two perpendicular paths cross. At an intersection, a ca
        |     |
        \-----/
 
-Several carts are also on the tracks. Carts always face either up (^), down (v), left (<), or right (>). (On your initial map, the track under each cart is a straight path matching the direction the cart is facing.)
+Several carts are also on the tracks. Carts always face either **up (^)**, **down (v)**, **left (<)**, or **right (>)**. (On your initial map, the track under each cart is a straight path matching the direction the cart is facing.)
 
-Each time a cart has the option to turn (by arriving at any intersection), it turns left the first time, goes straight the second time, turns right the third time, and then repeats those directions starting again with left the fourth time, straight the fifth time, and so on. This process is independent of the particular intersection at which the cart has arrived - that is, the cart has no per-intersection memory.
+Each time **a cart has the option to turn** (by arriving at any intersection), it **turns left the first time**, goes **straight the second time**, turns **right the third time**, **and then repeats** those directions starting again with left the fourth time, straight the fifth time, and so on. This process is independent of the particular intersection at which the cart has arrived - that is, the cart has no per-intersection memory.
 
-Carts all move at the same speed; they take turns moving a single step at a time. They do this based on their current location: carts on the top row move first (acting from left to right), then carts on the second row move (again from left to right), then carts on the third row, and so on. Once each cart has moved one step, the process repeats; each of these loops is called a tick.
+Carts all move at the same speed; they take turns moving a **single step at a time**. They do this based on their current location: carts on the **top row move first (acting from left to right)**, then carts on the second row move (again from left to right), then carts on the third row, and so on. Once each cart has moved one step, the process repeats; each of these loops is called a tick.
 
 For example, suppose there are two carts on a straight track:
 
@@ -148,7 +148,7 @@ Here is a longer example:
     \-+-/  \-+--/
       \------/
 
-After following their respective paths for a while, the carts eventually crash. To help prevent crashes, you'd like to know the location of the first crash. Locations are given in X,Y coordinates, where the furthest left column is X=0 and the furthest top row is Y=0:
+After following their respective paths for a while, the carts eventually crash. To help prevent crashes, you'd like to know the location of the first crash. Locations are given in X,Y coordinates, where the furthest left column is `X=0` and the furthest top row is `Y=0`:
 
                111
      0123456789012
