@@ -1,3 +1,4 @@
+use std::cmp::Ordering;
 use std::collections::HashSet;
 use std::error::Error;
 use std::str::FromStr;
@@ -28,7 +29,7 @@ impl FromStr for Casella {
             Some(&b'+') => Ok(Casella::Creuament),
             Some(&b'/') => Ok(Casella::GiraDreta),
             Some(&b'\\') => Ok(Casella::GiraEsquerra),
-            Some(&b) => panic!("Això no hi hauria de ser: 0x{:X}", b),
+            Some(&b) => panic!("Això no hi hauria d'existir': 0x{:X}", b),
         }
     }
 }
@@ -85,7 +86,6 @@ impl Fitxa {
     pub fn endavant(&mut self, proper_caracter: Casella) {
         match proper_caracter {
             Casella::Creuament => {
-                println!("Creuament!");
                 match self.girs {
                     0 => self.antihorari(),
                     2 => self.horari(),
@@ -108,6 +108,21 @@ impl Fitxa {
             }
             _ => (),
         }
+    }
+}
+
+impl Ord for Fitxa {
+    fn cmp(&self, other: &Self) -> Ordering {
+        let (sx, sy) = self.posicio;
+        let (ox, oy) = other.posicio;
+
+        (sy, sx).cmp(&(oy, ox))
+    }
+}
+
+impl PartialOrd for Fitxa {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
     }
 }
 
@@ -150,18 +165,16 @@ impl Joc {
     }
 
     fn juga(&mut self) -> HashSet<(usize, usize)> {
-        println!("{:?}", self.fitxes);
-        println!("----------------------------");
         let mut colisions: HashSet<(usize, usize)> = HashSet::new();
         loop {
+            // Ho vaig provar sense ordenar però no va funcionar
+            self.fitxes.sort_unstable();
             let mut posicions: HashSet<(usize, usize)> = HashSet::new();
             for fitxa in &mut self.fitxes {
                 // Comprova si han xocat amb la fitxa abans de moure-la
                 // Per evitar que es saltin ...
                 //  ...>....  ....>...
                 //  ....<...  ...<....
-                // Bàsicament el problema que se m'escapava el primer cop
-                // i així no he d'ordenar
                 if posicions.contains(&fitxa.posicio) {
                     colisions.insert(fitxa.posicio);
                 }
@@ -172,8 +185,7 @@ impl Joc {
                 posicions.insert((x, y));
                 fitxa.endavant(self.mapa[y][x]);
             }
-            println!("{:?}", self.fitxes);
-            println!("----------------------------");
+
             if colisions.len() != 0 {
                 break;
             }
